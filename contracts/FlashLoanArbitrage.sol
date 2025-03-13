@@ -32,15 +32,13 @@ contract FlashLoanArbitrage {
         vault.flashLoan(address(this), assets, amounts, userData);
     }
 
-    function receiveFlashLoan(
-        address[] calldata assets,
-        uint256[] calldata amounts,
-        uint256[] calldata premiums
-    ) external {
+    function receiveFlashLoan(address[] calldata assets, uint256[] calldata amounts, uint256[] calldata premiums)
+        external
+    {
         require(msg.sender == address(vault), "Only Balancer Vault can call this");
 
         // ✅ Implement Arbitrage Logic Here (Buy low, Sell high)
-        
+
         // ✅ Step 4: Approve Tokens for Repayment
         for (uint256 i = 0; i < assets.length; i++) {
             uint256 totalRepayment = amounts[i] + premiums[i];
